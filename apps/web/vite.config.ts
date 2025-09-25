@@ -3,7 +3,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
-  base: './',
+  base: './', // Força caminhos relativos no build, resolvendo o problema de MIME type.
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
