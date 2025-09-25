@@ -6,10 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    # Only run if Vercel secrets are configured
-    if: ${{ secrets.VERCEL_TOKEN }}
     
     steps:
     - name: Checkout code
@@ -27,7 +25,17 @@ jobs:
     - name: Build project
       run: npm run build --workspace=apps/web
       
+    - name: Check for Vercel secrets
+      id: check-secrets
+      run: |
+        if [ -n "${{ secrets.VERCEL_TOKEN }}" ]; then
+          echo "has-secrets=true" >> $GITHUB_OUTPUT
+        else
+          echo "has-secrets=false" >> $GITHUB_OUTPUT
+        fi
+      
     - name: Deploy to Vercel
+      if: steps.check-secrets.outputs.has-secrets == 'true'
       uses: amondnet/vercel-action@v25
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -35,29 +43,9 @@ jobs:
         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
         working-directory: ./
-
-  # Fallback job that runs when Vercel secrets are not configured
-  build-only:
-    runs-on: ubuntu-latest
-    if: ${{ !secrets.VERCEL_TOKEN }}
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-        cache: 'npm'
         
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Build project
-      run: npm run build --workspace=apps/web
-      
-    - name: Upload build artifacts
+    - name: Upload build artifacts (fallback)
+      if: steps.check-secrets.outputs.has-secrets == 'false'
       uses: actions/upload-artifact@v4
       with:
         name: production-build
@@ -65,6 +53,7 @@ jobs:
         retention-days: 30
         
     - name: Deployment Status
+      if: steps.check-secrets.outputs.has-secrets == 'false'
       run: |
         echo "✅ Build completed successfully!"
         echo "📦 Production build artifacts uploaded"
@@ -72,3 +61,9 @@ jobs:
         echo "   1. Create a Vercel account at https://vercel.com"
         echo "   2. Add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID to GitHub secrets"
         echo "   3. Push to main branch to trigger automatic deployment"
+        
+    - name: Success Message
+      if: steps.check-secrets.outputs.has-secrets == 'true'
+      run: |
+        echo "🚀 Successfully deployed to Vercel!"
+        echo "✅ Your game is now live!"
