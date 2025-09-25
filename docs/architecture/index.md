@@ -1,0 +1,27 @@
+# River Raid JS Fullstack Architecture Document
+
+## Table of Contents
+
+- [River Raid JS Fullstack Architecture Document](#table-of-contents)
+  - [Section 1: Introduction](#section-1-introduction)
+  - [Section 2: High Level Architecture](#section-2-high-level-architecture)
+  - [Section 3: Tech Stack](#section-3-tech-stack)
+  - [Section 4: Data Models](#section-4-data-models)
+  - [Section 5: API Specification](#section-5-api-specification)
+  - [Section 6: Components](#section-6-components)
+  - [Section 7: External APIs](#section-7-external-apis)
+  - [Section 8: Core Workflows](#section-8-core-workflows)
+  - [Section 9: Database Schema](#section-9-database-schema)
+  - [Section 10: Frontend Architecture](#section-10-frontend-architecture)
+  - [Section 11: Backend Architecture](#section-11-backend-architecture)
+  - [Section 12: Unified Project Structure](#section-12-unified-project-structure)
+  - [Section 13: Development Workflow](#section-13-development-workflow)
+  - [Asset Development Workflow](#asset-development-workflow)
+  - [Performance Testing](#performance-testing)
+  - [Section 14: Deployment Architecture](#section-14-deployment-architecture)
+  - [Section 15: Security and Performance](#section-15-security-and-performance)
+  - [Section 16: Testing Strategy](#section-16-testing-strategy)
+  - [Section 17: Coding Standards](#section-17-coding-standards)
+  - [Section 18: Error Handling Strategy](#section-18-error-handling-strategy)
+  - [Section 19: Monitoring and Observability](#section-19-monitoring-and-observability)
+  - [Section 20: Checklist Results Report](#section-20-checklist-results-report)
