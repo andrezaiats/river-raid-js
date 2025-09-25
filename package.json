@@ -1,5 +1,26 @@
 {
+  "name": "river-raid-js",
+  "version": "1.0.0",
+  "description": "A modern, browser-based tribute to the classic Atari 2600 game River Raid",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/web",
+    "test": "npm run test --workspace=apps/web",
+    "lint": "npm run lint --workspace=apps/web"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
   "dependencies": {
     "md-file-tree": "^0.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
