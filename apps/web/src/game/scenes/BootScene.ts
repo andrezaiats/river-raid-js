@@ -9,7 +9,7 @@ export class BootScene extends Phaser.Scene {
   preload(): void {
     // Create a simple loading bar
     const loadingBar = this.add.graphics();
-    const loadingText = this.add.text(400, 250, 'Loading...', {
+    this.add.text(400, 250, 'Loading...', {
       fontSize: '32px',
       color: '#ffffff'
     }).setOrigin(0.5);

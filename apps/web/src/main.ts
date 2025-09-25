@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const game = new Phaser.Game(gameConfig);
   
   // Global reference for debugging (development only)
-  if (import.meta.env.DEV) {
+  if (import.meta.env?.DEV) {
     (window as any).game = game;
     console.log('🎮 River Raid JS initialized successfully!');
     console.log('Game instance available as window.game for debugging');

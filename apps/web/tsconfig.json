@@ -12,7 +12,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.js",
-    "src/**/*.vue"
+    "../../packages/shared/src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
