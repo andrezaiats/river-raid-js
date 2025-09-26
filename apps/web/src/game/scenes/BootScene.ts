@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { SCENE_KEYS } from '@shared/constants/gameplay.js';
+import { ASSET_KEYS } from '../config/AssetManifest.js';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -27,9 +28,17 @@ export class BootScene extends Phaser.Scene {
       loadingBar.fillRect(300, 300, 200 * progress, 20);
     });
 
-    // For now, just create a placeholder asset load
-    // In the future, actual game assets will be loaded here
-    this.load.image('placeholder', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==');
+    // Create player sprite programmatically
+    this.createPlayerSprite();
+  }
+
+  private createPlayerSprite(): void {
+    // Create 32x32 blue rectangle sprite for player
+    const graphics = this.add.graphics();
+    graphics.fillStyle(0x0066cc);
+    graphics.fillRect(0, 0, 32, 32);
+    graphics.generateTexture(ASSET_KEYS.PLAYER_SPRITE, 32, 32);
+    graphics.destroy();
   }
 
   create(): void {
@@ -52,12 +61,12 @@ export class BootScene extends Phaser.Scene {
 
     // Add input listener for any key press
     this.input.keyboard?.once('keydown', () => {
-      console.log('Phaser game successfully initialized!');
+      this.scene.start(SCENE_KEYS.GAME);
     });
 
     // Auto-continue after 3 seconds for demo purposes
     this.time.delayedCall(3000, () => {
-      console.log('Phaser game successfully initialized! Auto-continuing...');
+      this.scene.start(SCENE_KEYS.GAME);
     });
   }
 }

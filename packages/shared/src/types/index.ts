@@ -37,3 +37,11 @@ export interface GameEntity {
   velocity: Velocity;
   active: boolean;
 }
+
+export interface IPlayer extends GameEntity {
+  fuel: number;
+  maxSpeed: number;
+  currentSpeed: number;
+  lives: number;
+  isAlive: boolean;
+}
