@@ -30,11 +30,20 @@ jobs:
     - name: Run type checking
       run: npm run type-check --workspace=apps/web
       
-    - name: Run unit tests (placeholder)
-      run: echo "Unit tests will be implemented in future stories"
+    - name: Install test dependencies
+      run: npm install jsdom happy-dom --workspace=apps/web
       
-    - name: Lint check (placeholder)  
-      run: echo "ESLint configuration will be added in future code quality story"
+    - name: Run unit tests
+      run: npm run test --workspace=apps/web
+      
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps chromium
+      working-directory: apps/web
+      
+    - name: Run integration tests
+      run: npm run test:e2e --workspace=apps/web
+      env:
+        CI: true
       
     - name: Build project
       run: npm run build --workspace=apps/web

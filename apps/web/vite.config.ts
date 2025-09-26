@@ -3,11 +3,10 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
-  base: './', // Força caminhos relativos no build, resolvendo o problema de MIME type.
+  publicDir: 'public',
+  base: './',
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: true,
     target: 'es2022',
     rollupOptions: {
       input: {
@@ -18,24 +17,26 @@ export default defineConfig({
           phaser: ['phaser']
         }
       }
-    }
-  },
-  server: {
-    port: 3000,
-    host: true,
-    open: true
+    },
+    sourcemap: true
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
       '@shared': resolve(__dirname, '../../packages/shared/src')
     }
   },
-  esbuild: {
-    target: 'es2022',
-    format: 'esm'
-  },
-  optimizeDeps: {
-    include: ['phaser']
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./tests/setup.ts'],
+    include: ['tests/**/*.test.ts'],
+    coverage: {
+      reporter: ['text', 'html'],
+      exclude: [
+        'node_modules/',
+        'tests/',
+        'dist/'
+      ]
+    }
   }
 });
