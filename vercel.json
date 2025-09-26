@@ -2,5 +2,5 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "npm install",
   "buildCommand": "npm run build --workspace=@river-raid/web",
-  "outputDirectory": "apps/web/dist"
+  "outputDirectory": "./apps/web/dist"
 }
