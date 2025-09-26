@@ -22,7 +22,6 @@
     "@playwright/test": "1.44.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "canvas": "^2.11.2",
     "eslint": "^8.0.0",
     "happy-dom": "^10.0.0",
     "jsdom": "^22.0.0",

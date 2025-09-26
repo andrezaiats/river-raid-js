@@ -26,8 +26,8 @@ vi.mock('phaser', () => {
           this.textures = { exists: vi.fn(() => true) };
         }
 
-        destroy() {
-          // Mock destroy method
+        cleanup() {
+          // Mock cleanup method
         }
       },
       GameObjects: {
@@ -149,7 +149,7 @@ describe('Player Rendering Integration', () => {
       const playerId = player.id;
       const entityManager = (gameScene as any).entityManager;
 
-      gameScene.destroy();
+      gameScene.cleanup();
 
       expect(entityManager.getEntity(playerId)).toBeUndefined();
     });

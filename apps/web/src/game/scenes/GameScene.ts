@@ -44,19 +44,18 @@ export class GameScene extends Phaser.Scene {
     });
   }
 
-  update(time: number, delta: number): void {
+  update(_time: number, delta: number): void {
     if (this.player && this.player.active) {
       this.player.update(delta);
     }
   }
 
-  destroy(): void {
+  cleanup(): void {
     // Clean up player entity
     if (this.player) {
       this.renderManager.removeFromLayer('players', this.player);
       this.entityManager.recycleEntity(this.player);
       this.player = undefined;
     }
-    super.destroy();
   }
 }

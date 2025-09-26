@@ -42,7 +42,7 @@ export class Player extends Phaser.GameObjects.Sprite implements IPlayer {
     }
   }
 
-  public update(delta: number, inputManager?: any): void {
+  public update(_delta: number, _inputManager?: any): void {
     // Update position tracking
     this.position.x = this.x;
     this.position.y = this.y;
